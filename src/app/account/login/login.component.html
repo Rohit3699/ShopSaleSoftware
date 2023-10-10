@@ -1,0 +1,46 @@
+<style>
+	.textlogin{
+		
+		height:300px;
+		width: 400px;
+		margin: 200px auto;
+		padding: 30px;
+		background: white;
+		box-shadow:2px 2px 2px 2px black;
+	}
+	#box{
+		height: 725px;
+		width: 1525px;
+		 border: 1px solid black;
+		margin: auto; 
+		background-image: url('/assets/dist/img/photo1.png');
+	}
+	
+</style>
+
+
+<div id="box">
+<div class="textlogin">
+<form #nameForm="ngForm" novalidate (ngSubmit)="saveNameForm(formModel)">
+
+    <div class="form-group ">
+        <label for="inputName" class="form-control-label">UserName</label>
+        <input type="text"  id="inputName" class="col-sm-12" name="lotCode" [(ngModel)]="formModel.userName" #lotCode="ngModel" aria-describedby="nameHelp"
+         autocomplete="new-password" required>
+        <small id="nameHelp" class="text-danger" *ngIf="lotCode.invalid && submitted">Required</small>
+    </div>
+
+    <div class="form-group">
+        <label for="inputDescription" class="form-control-label"> Password</label>
+        <input type="password" id="inputDescription" class="col-sm-12" name="desCode" [(ngModel)]="formModel.password" #desCode="ngModel" aria-describedby="descriptionHelp"
+         autocomplete="new-password" required>
+        <small id="descriptionHelp" class="text-danger" *ngIf="desCode.invalid && submitted">Required</small>
+    </div>
+
+    <button type="submit" style="border: none;background: red; border-radius: 5px;">Submit </button>
+</form>
+</div>
+</div>
+
+
+ 

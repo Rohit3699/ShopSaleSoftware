@@ -1,0 +1,74 @@
+
+
+<style>
+    .cat
+    {
+        border: 2px solid black;
+        min-height: 300px;
+        
+    }
+    .a{
+        margin-left:10px ;
+    }
+    .v{
+        margin-left:70% ;
+    }
+    </style>
+    
+    <div class="wrapper">
+      <div class="content-wrapper cat">
+    
+        <form #nameForm="ngForm" novalidate (ngSubmit)="saveNameForm(formModel)">
+
+            <div class="form-group a">
+                <label for="vendorName">Vendor:</label>
+                <select style="height: 30px; width: 300px; border-radius: 25px;" [(ngModel)]="formModel.parentId" name="vendorName"  #vendorName="ngModel"  >
+                  <option value="0" >--Select Vendor--</option>
+                  <option *ngFor="let item of vendorData" [ngValue]="item.id" >{{item.name}}</option>
+                </select>
+                <small id="descriptionHelp" class="text-danger" *ngIf="vendorName.invalid && submitted">Required</small>
+            </div>
+           
+            <div class="form-group form-check v">
+              <input type="checkbox"  name="acceptTerms" id="acceptTerms" class="form-check-input" [(ngModel)]="formModel.CheckBox" #acceptTerms="ngModel"  required>
+              <label for="acceptTerms" class="form-check-label">isReturnable</label>
+              <div *ngIf="submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is required</div>
+          </div>
+            
+         <button type="submit" style="height: 30px; width: 100px; border-radius: 25px;background: red;" >Submit </button> 
+        </form> 
+        <!-- <div class="m-2 p-2">
+            <table class="custom-table">
+              <thead class="bg-light">
+                <tr>
+                  <th >Category Name</th>
+                   <th >Product Name</th>
+                  <th >Price</th>
+                  <th>Brand</th>
+                  <th>Image</th>
+                  <th >Is Returnable</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of productdata; let i=index">
+                  <td>{{ item.categoryName }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.brand }}</td>
+                  <td><img alt="item" [src]= item.productImage height="50px"/></td>      
+                  <td>{{ item.isReturnable ? 'Yes' : 'No' }}</td>
+                  <button  class="btn btn-info m-1"  data-toggle="modal" data-target="#editModal"  (click)="editClick(i)">
+                   
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button  class="btn btn-danger"  (click)="DeleteProduct(item.productId)">
+                    <i class="fa fa-trash"></i>
+                </button>
+                </tr>
+              </tbody>
+            </table> -->
+    
+    </div>
+    
+    

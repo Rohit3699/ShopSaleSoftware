@@ -1,0 +1,97 @@
+<style>
+    .cat
+    {
+        border: 2px solid black;
+        min-height: 300px;
+        
+    }
+    .a{
+        margin-left:10px ;
+    }
+    </style>
+    
+    <div class="wrapper">
+      <div class="content-wrapper cat">
+    
+        <form #nameForm="ngForm" novalidate (ngSubmit)="saveNameForm(formModel)">
+
+          
+            <div class="form-group a">
+                <label for="categoryName">Category:</label>
+                <select style="height: 30px; width: 300px; border-radius: 25px;" [(ngModel)]="formModel.parentId" name="lotCode"  #lotCode="ngModel"  >
+                    
+                    <option *ngFor="let item of categorydata" [ngValue]="item.productId" >{{item.name}}</option>
+                </select>
+                <small id="descriptionHelp" class="text-danger" *ngIf="lotCode.invalid && submitted">Required</small>
+            </div>
+        
+            <div class="form-group a">
+                <label for="inputName" class="form-control-label"> ProductName</label>
+                <input type="text"  id="inputName" style="height: 30px; width: 300px; border-radius: 25px;" name="inputName" [(ngModel)]="formModel.name" #inputName="ngModel" aria-describedby="nameHelp"
+                 autocomplete="new-password" >
+                <small id="descriptionHelp" class="text-danger" *ngIf="inputName.invalid && submitted">Required</small>
+            </div>
+            <div class="form-group a">
+                <label for="inputprice" class="form-control-label"> price</label>
+                <input type="number"  id="inputprice" style="height: 30px; width: 300px; border-radius: 25px;"  name="inputprice" [(ngModel)]="formModel.price" #inputprice="ngModel" aria-describedby="nameHelp"
+                 autocomplete="new-password" >
+                <small id="descriptionHelp" class="text-danger" *ngIf="inputprice.invalid && submitted">Required</small>
+            </div>
+            <div class="form-group a">
+                <label for="inputbrand" class="form-control-label"> Brand</label>
+                <input type="text"  id="inputbrand" style="height: 30px; width: 300px; border-radius: 25px;"  name="inputbrand" [(ngModel)]="formModel.brand" #inputbrand="ngModel" aria-describedby="nameHelp"
+                 autocomplete="new-password" >
+                <small id="descriptionHelp" class="text-danger" *ngIf="inputbrand.invalid && submitted">Required</small>
+            </div>
+            <div class="form-group a">
+                <label for="isreturnable">IsReturnable</label>
+                <select style="height: 30px; width: 300px; border-radius: 25px;" [(ngModel)]="formModel.isReturnable" name="isreturnable"  #isreturnable="ngModel"  >
+                    <option [ngValue]=true>Yes</option>
+                    <option [ngValue]=false >No</option>
+                </select>   
+                <small id="descriptionHelp" class="text-danger" *ngIf="isreturnable.invalid && submitted">Required</small>
+            </div>
+            <div class="form-group a">
+                <label for="inputimage" class="form-control-label"> ProductImage</label>
+                <input type="file"  id="inputimage"  accept="image/*" (change)="onChange($event)"  >
+                <!-- <small id="descriptionHelp" class="text-danger" *ngIf="inputimage.invalid && submitted">Required</small> -->
+            </div>
+        
+            <button type="submit" style="height: 30px; width: 100px; border-radius: 25px;background: red;" >Submit </button> 
+
+        </form>
+        <div class="m-2 p-2">
+            <table class="custom-table">
+              <thead class="bg-light">
+                <tr>
+                  <th >Category Name</th>
+                   <th >Product Name</th>
+                  <th >Price</th>
+                  <th>Brand</th>
+                  <th>Image</th>
+                  <th >Is Returnable</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of productdata; let i=index">
+                  <td>{{ item.categoryName }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.brand }}</td>
+                  <td><img alt="item" [src]= item.productImage height="50px"/></td>      
+                  <td>{{ item.isReturnable ? 'Yes' : 'No' }}</td>
+                  <button  class="btn btn-info m-1"  data-toggle="modal" data-target="#editModal"  (click)="editClick(i)">
+                   
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button  class="btn btn-danger"  (click)="DeleteProduct(item.productId)">
+                    <i class="fa fa-trash"></i>
+                </button>
+                </tr>
+              </tbody>
+            </table>
+    
+    </div>
+    
+    

@@ -1,0 +1,58 @@
+<style>
+.cat
+{
+    border: 2px solid black;
+    min-height: 300px;
+    
+}
+.a{
+    margin-left:10px ;
+}
+</style>
+
+<div class="wrapper">
+  <div class="content-wrapper cat">
+
+    <form #nameForm="ngForm" novalidate (ngSubmit)="saveNameForm(formModel)">
+
+        <div class="form-group a">
+           <label for="inputName" class="form-control-label">Category Name</label><br/>
+            <input type="text" id="inputName" style="height: 30px; width: 300px; border-radius: 25px;" name="lotCode" [(ngModel)]="formModel.name" #lotCode="ngModel" aria-describedby="nameHelp"
+             autocomplete="new-password" required>
+            <small id="nameHelp" class="text-danger" *ngIf="lotCode.invalid && submitted">Required</small>
+        </div>
+       
+        
+        
+     <button type="submit" style="height: 30px; width: 100px; border-radius: 25px;background: red;" >Submit </button> 
+    </form>  
+    <div class="m-2 p-2">
+        <table class="custom-table">
+          <thead class="bg-light">
+            <tr>
+              <th  >Serial No</th>
+              
+               <th >Category Name</th>
+              
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of categorydata">
+              <td>{{ item.productId}}</td>
+              <td>{{ item.name }}</td>
+             
+              <button  class="btn btn-info m-1" data-toggle="modal" data-target="#editModal">
+                <i class="fa fa-edit"></i>
+            </button>
+            <!-- <button  class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+            </button> -->
+            </tr>
+          </tbody>
+        </table>
+  
+</div>
+
+</div>
+
